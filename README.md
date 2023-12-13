@@ -4,7 +4,7 @@ The Olivetti M21 Personal Computer is one of the first "portable" (luggable) com
 
 It is loosely based on the IBM PC or IBM 5150 model and uses the Intel 8086 CPU along with up to 640K of RAM, and contains an integrated grayscale 9" Italian CRT tube. It features a 640x400 CGA compatible graphics card with doubled vertical resolution allowing for very high quality text rendering for its time and supported by Microsoft Windows and some other software.
 
-The expansion capabilities of the M21 are up to 4 8-bit ISA expansion card slots, though a custom riser card is necessary. This project recreates the riser card needed for these expansion cards.
+The expansion capabilities of the M21 are up to 4 8-bit ISA expansion card slots, though a custom riser card is necessary. This project recreates a rudimentary type of riser card needed for these expansion cards. Note that its functionality is limited, read below!
 
 More information to get an impression:
 
@@ -17,6 +17,12 @@ This project is an open-source recreation of what would have been a 4-slot 8-bit
 Of course, use is entirely at your own risk.
 
 ![Preview of PCB v1.0](Production/v1.0/Riser.png)
+
+### Limitations
+
+The M21 and M24 generally use something called a "Bus Converter" instead of a riser card. The Bus Converter supports up to 3 or 4 8-bit ISA or 16-bit custom Olivetti extension cards. It also performs extra address decoding necessary to make the 8-bit ISA cards 100% IBM PC compatible. The 8-bit ISA slot by itself is not 100% IBM PC compatible: it will allow I/O requests but it will not allow direct memory access e.g. to an Option ROM without the extra address decoding logic.
+
+This means that the passive ISA riser card presented here is not 100% compatible with all IBM PC cards. Option ROMs are not supported. Any cards that rely upon ROM or BIOS drivers will not work. However, once the system has booted cards should generally be accessible through normal I/O requests with software drivers.
 
 ### ISA 8-bit XT expansion card connector
 
@@ -39,6 +45,11 @@ As measured, as seen from TOP orientation:
 * Leftmost pin from TOP is wider than all other pins, reaches all the way to board edge to its left.
 * Board edge (excluding ISA edge card fingers) to center of first adjacent ISA female connector pin: ~2.54 mm.
 * Board edge (excluding ISA edge card fingers) to center of holes: ~5.04 mm.
+
+### Bill of Materials
+
+* 4x 8-bit ISA slot, e.g. EDAC INC / 395-062-520-350, Digikey EDC395062-ND.
+* 6x CAP ALUM 100UF 20% 16V RADIAL, e.g. PANASONIC ELECTRONIC COMPONENTS / ECA-1CM101, Digikey P5138-ND.
 
 ### Revisions
 
